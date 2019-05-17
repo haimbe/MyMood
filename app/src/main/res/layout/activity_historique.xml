@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1.0"
+    tools:context=".HistoriqueActivity">
+
+    <TextView
+        android:id="@+id/septjours"
+        android:text="Il y a une semaine"
+        android:layout_width= "match_parent"
+        android:background="@color/blue"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/sixjours"
+        android:text="Il y a 6 jours"
+        android:layout_width= "match_parent"
+        android:background="@color/red"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/cingjours"
+        android:text="Il y a 5 jours"
+        android:layout_width= "match_parent"
+        android:background="@color/yellow"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/quatrejours"
+        android:text="Il y a 4 jours"
+        android:layout_width= "match_parent"
+        android:background="@color/pink"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/troisjours"
+        android:text="Il y a 3 jours"
+        android:layout_width= "match_parent"
+        android:background="@color/green"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/avanthier"
+        android:text="Avant hier"
+        android:layout_width= "match_parent"
+        android:background="@color/yellow"
+        android:layout_weight="0.15"
+        android:layout_height="0dp"></TextView>
+
+    <TextView
+        android:id="@+id/hier"
+        android:text="Hier"
+        android:layout_width= "match_parent"
+        android:background="@color/blue"
+        android:layout_weight="0.10"
+        android:layout_height="0dp"></TextView>
+
+
+
+
+
+</LinearLayout>

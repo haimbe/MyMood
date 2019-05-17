@@ -11,7 +11,7 @@
         android:id="@+id/Smiley"
         android:layout_width= "200dp"
         android:layout_height="200dp"
-        android:src="@drawable/TresMauvaiseHumeur"
+        android:src="@drawable/tresmauvaisehumeur"
         android:layout_gravity="center"/>
 
     <ImageButton
@@ -26,6 +26,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/Historique2"
-        android:layout_gravity="end" />
+        android:layout_gravity="bottom|end" />
 
 </FrameLayout>
