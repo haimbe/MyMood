@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mSmiley.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mood = mSmiley.getContentDescription();
+                Mood.setmStatus(mSmiley.getContentDescription().toString());
 
                 // The user just clicked
             }
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //Lorsque l'on cliquera sur le bouton "OK", on récupère l'EditText correspondant à notre vue personnalisée (cad à alertDialogView)
                         EditText et = (EditText)alertDialogView.findViewById(R.id.EditText1);
+                        Mood.setmCommentary(et.getText());
 
                         //On affiche dans un Toast le texte contenu dans l'EditText de notre AlertDialog
                         Toast.makeText(getApplicationContext(), et.getText(), Toast.LENGTH_SHORT).show();
