@@ -1,7 +1,9 @@
 package com.example.mymood;
 
+import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +27,18 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mCommentaire;
     private ImageButton mHistorique;
     private FrameLayout mfond;
+    private String general_mood = "default";
+    private String commentary = "default";
     int i=0;
-    String mood;
+    private Mood mood;
+    SmileyComment smileyComment = new SmileyComment();
+
+    AlarmManager alarmManager= (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+
+
+
+
+    SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
     private int[] galimages = new int[] {
             R.drawable.tresmauvaisehumeur, R.drawable.mauvaisehumeur, R.drawable.normal, R.drawable.content,R.drawable.trescontent
@@ -53,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
         mSmiley.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mood.setmStatus(mSmiley.getContentDescription().toString());
+                mood.setmStatus(mSmiley.getContentDescription().toString());
+                preferences.edit().putString("general_mood", mood.getmStatus()).apply();
+                String general_mood = getPreferences(MODE_PRIVATE).getString("general_mood", null);
 
                 // The user just clicked
             }
@@ -92,7 +106,18 @@ public class MainActivity extends AppCompatActivity {
 
                         //Lorsque l'on cliquera sur le bouton "OK", on récupère l'EditText correspondant à notre vue personnalisée (cad à alertDialogView)
                         EditText et = (EditText)alertDialogView.findViewById(R.id.EditText1);
-                        Mood.setmCommentary(et.getText());
+                        mood.setmCommentary(et.getText().toString());
+                        preferences.edit().putString("commentary", mood.getmCommentary()).apply();
+                        String commentary = getPreferences(MODE_PRIVATE).getString("commentary", null);
+
+                        Gson gson = new Gson();
+                        String smileyComment(String general_mood , String commentary);
+                        preferences.edit().putString("smileycomment",Gson.toJson(smileyComment).apply();
+
+
+
+
+
 
                         //On affiche dans un Toast le texte contenu dans l'EditText de notre AlertDialog
                         Toast.makeText(getApplicationContext(), et.getText(), Toast.LENGTH_SHORT).show();
@@ -107,17 +132,18 @@ public class MainActivity extends AppCompatActivity {
                 adb.show();
             }
 
-            };
+            });
 
         mHistorique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // The user just clicked
+
+                Intent historiqueActivity = new Intent(MainActivity.this, HistoriqueActivity.class);
+                startActivity(historiqueActivity);
             }
         });
 
-        Intent HistoriqueActivity = new Intent(MainActivity.this, HistoriqueActivity.class);
-        startActivity(HistoriqueActivity);
+
         }
 
     public void OnSwipeBottom(){
