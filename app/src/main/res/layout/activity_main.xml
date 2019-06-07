@@ -18,14 +18,14 @@
         android:id="@+id/Commentaire"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/Commentaire2"
+        android:src="@drawable/commentaire2"
         android:layout_gravity="bottom"/>
     
     <ImageButton
         android:id="@+id/Historique"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/Historique2"
+        android:src="@drawable/historique2"
         android:layout_gravity="bottom|end" />
 
 </FrameLayout>

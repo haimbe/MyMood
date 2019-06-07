@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private String commentary = "default";
     int i=0;
     private Mood mood;
-    SmileyComment smileyComment = new SmileyComment();
 
-    AlarmManager alarmManager= (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+
+
 
 
 
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AlarmManager alarmManager= (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+
 
         mSmiley = (ImageView) findViewById(R.id.Smiley);
         mCommentaire = (ImageButton) findViewById(R.id.Commentaire);
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mood.setmStatus(mSmiley.getContentDescription().toString());
-                preferences.edit().putString("general_mood", mood.getmStatus()).apply();
+                preferences.edit().putInt("general_mood", galimages[i]).apply();
                 String general_mood = getPreferences(MODE_PRIVATE).getString("general_mood", null);
 
                 // The user just clicked
@@ -111,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
                         String commentary = getPreferences(MODE_PRIVATE).getString("commentary", null);
 
                         Gson gson = new Gson();
-                        String smileyComment(String general_mood , String commentary);
-                        preferences.edit().putString("smileycomment",Gson.toJson(smileyComment).apply();
+                        String json = gson.toJson(mood);
+                        preferences.edit().putString("mood",gson.toJson(mood));
 
 
 
