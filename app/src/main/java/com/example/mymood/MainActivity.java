@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Gson gson = new Gson();
                         String json = gson.toJson(mood);
-                        preferences.edit().putString("mood",gson.toJson(mood));
+                        preferences.edit().putString("mood",gson.toJson(mood)).apply();
 
 
 
