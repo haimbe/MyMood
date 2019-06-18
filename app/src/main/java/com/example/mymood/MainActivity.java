@@ -1,6 +1,7 @@
 package com.example.mymood;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private String commentary = "default";
     int i=0;
     private Mood mood;
+    private SharedPreferences preferences;
 
 
 
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
     private int[] galimages = new int[] {
             R.drawable.tresmauvaisehumeur, R.drawable.mauvaisehumeur, R.drawable.normal, R.drawable.content,R.drawable.trescontent
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AlarmManager alarmManager= (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+        preferences = getPreferences(MODE_PRIVATE);
 
 
         mSmiley = (ImageView) findViewById(R.id.Smiley);
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 final View alertDialogView = factory.inflate(R.layout.alertdialogperso, null);
 
                 //Création de l'AlertDialog
-                AlertDialog.Builder adb = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder adb = new AlertDialog.Builder(this);
 
                 //On affecte la vue personnalisé que l'on a crée à notre AlertDialog
                 adb.setView(alertDialogView);
@@ -146,6 +149,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(historiqueActivity);
             }
         });
+
+        Intent slIntent = new Intent(this, HistoricMood.class);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+
+        PendingIntent slPendingIntent = PendingIntent.getService(this, 1, slIntent, PendingIntent.FLAG_ONE_SHOT);
+
+        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, slPendingIntent);
 
 
         }
